@@ -27,8 +27,6 @@ async def create_file(
         file_name = file.filename
         file_bytes = await file.read()
 
-        print(hex_colors)
-
         if not os.path.exists(dst_directory_path):
             os.makedirs(dst_directory_path)
         
@@ -41,7 +39,7 @@ async def create_file(
         png_file_path = os.path.join(images_directory_path, file_name.replace('.DST', '.png'))
 
         for hex_color in hex_colors:
-            pattern.add_thread(pyembroidery.EmbThread.parse_string_color(f"#{hex_color}"))
+            pattern.add_thread(pyembroidery.EmbThread.parse_string_color(hex_color))
 
         pattern.write_png(pattern, png_file_path)
 
