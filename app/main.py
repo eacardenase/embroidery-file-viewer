@@ -60,11 +60,9 @@ async def create_file(
         color_changes = pattern.count_color_changes()
         stops = color_changes + 1
 
-        print("TEST")
-
         return JSONResponse(content={
             "url": url_path,
-            "colors": stops
+            "required_number_of_colors": stops
             })
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
