@@ -57,7 +57,14 @@ async def create_file(
 
         # Construct the URL path to return in the response
         url_path = f"/embroidery_images/{png_file_name}"
+        color_changes = pattern.count_color_changes()
+        stops = color_changes + 1
 
-        return JSONResponse(content={"url": url_path})
+        print("TEST")
+
+        return JSONResponse(content={
+            "url": url_path,
+            "colors": stops
+            })
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
